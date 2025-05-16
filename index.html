@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard</title>
+    <!-- Pacotes do Bootstrap safado -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--primary-color);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>
+                Sistema de Gestão Escolar
+            </a>
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fas fa-home me-1"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-bell me-1"></i> Notificações</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-cog me-1"></i> Configurações</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i> Admin
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Perfil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Configurações</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <div class="welcome-section shadow">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h2 class="fw-bold mb-3">Bem-vindo ao Sistema de Gestão Escolar</h2>
+                    <p class="mb-0">Gerencie alunos, turmas, notas e muito mais em uma plataforma integrada e fácil de usar.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-graduation-cap fa-5x"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Estatísticazinha de leve -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-4">
+                <div class="card stats-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-muted mb-2">Total de Alunos</h6>
+                                <h3 class="mb-0">1,500</h3>
+                            </div>
+                            <div class="bg-primary bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-users text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <span class="badge bg-success"><i class="fas fa-arrow-up me-1"></i> 20%</span>
+                            <span class="text-muted ms-2">vs último mês</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card stats-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-muted mb-2">Novos Alunos</h6>
+                                <h3 class="mb-0">100</h3>
+                            </div>
+                            <div class="bg-warning bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-user-plus text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <span class="badge bg-success"><i class="fas fa-arrow-up me-1"></i> 5%</span>
+                            <span class="text-muted ms-2">vs último mês</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card stats-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-muted mb-2">Turmas Ativas</h6>
+                                <h3 class="mb-0">30</h3>
+                            </div>
+                            <div class="bg-info bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-chalkboard-teacher text-info"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <span class="badge bg-danger"><i class="fas fa-arrow-down me-1"></i> 5%</span>
+                            <span class="text-muted ms-2">vs último mês</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card stats-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-muted mb-2">Média Geral</h6>
+                                <h3 class="mb-0">7.8</h3>
+                            </div>
+                            <div class="bg-success bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-star text-success"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <span class="badge bg-success"><i class="fas fa-arrow-up me-1"></i> 0.5%</span>
+                            <span class="text-muted ms-2">vs último mês</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ações rápidas -->
+        <div class="quick-actions">
+            <h4 class="mb-4 fw-bold"><i class="fas fa-bolt me-2 text-warning"></i> Ações Rápidas</h4>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card menu-card">
+                        <div class="card-body text-center">
+                            <a href="#">
+                                <i class="fas fa-home"></i>
+                                <h5 class="mt-3">Dashboard</h5>
+                                <p class="text-muted">Visão geral do sistema</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card menu-card">
+                        <div class="card-body text-center">
+                            <a href="cadastro-aluno.html">
+                                <i class="fas fa-user-plus"></i>
+                                <h5 class="mt-3">Cadastrar Aluno</h5>
+                                <p class="text-muted">Adicionar novo aluno</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card menu-card">
+                        <div class="card-body text-center">
+                            <a href="lista-de-alunos.html">
+                                <i class="fas fa-list-ul"></i>
+                                <h5 class="mt-3">Lista de Alunos</h5>
+                                <p class="text-muted">Visualizar todos os alunos</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card menu-card">
+                        <div class="card-body text-center">
+                            <a href="detalhe-aluno.html">
+                                <i class="fas fa-id-card"></i>
+                                <h5 class="mt-3">Detalhes do Aluno</h5>
+                                <p class="text-muted">Informações completas</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card menu-card">
+                        <div class="card-body text-center">
+                            <a href="turmas.html">
+                                <i class="fas fa-chalkboard"></i>
+                                <h5 class="mt-3">Gerenciar Turmas</h5>
+                                <p class="text-muted">Criar e editar turmas</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card menu-card">
+                        <div class="card-body text-center">
+                            <a href="notas.html">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h5 class="mt-3">Lançar Notas</h5>
+                                <p class="text-muted">Registrar avaliações</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card menu-card">
+                        <div class="card-body text-center">
+                            <a href="relatorios.html">
+                                <i class="fas fa-chart-bar"></i>
+                                <h5 class="mt-3">Relatórios</h5>
+                                <p class="text-muted">Gerar análises</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card menu-card">
+                        <div class="card-body text-center">
+                            <a href="sobre.html">
+                                <i class="fas fa-info-circle"></i>
+                                <h5 class="mt-3">Sobre</h5>
+                                <p class="text-muted">Informações do sistema</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Atividadeszinha de leve -->
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-history me-2"></i> Atividades Recentes</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-user-plus text-success me-2"></i>
+                            <span>Novo aluno cadastrado - Rafael Góes</span>
+                        </div>
+                        <small class="text-muted">10 minutos atrás</small>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-edit text-primary me-2"></i>
+                            <span>Notas atualizadas - Turma A</span>
+                        </div>
+                        <small class="text-muted">1 hora atrás</small>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-chalkboard-teacher text-info me-2"></i>
+                            <span>Nova turma criada - 3º Ano B</span>
+                        </div>
+                        <small class="text-muted">3 horas atrás</small>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-file-export text-warning me-2"></i>
+                            <span>Relatório gerado - Desempenho Mensal</span>
+                        </div>
+                        <small class="text-muted">Ontem</small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé de mulek -->
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">Sistema de Gestão Escolar</h5>
+                    <p class="mb-0">Uma solução completa para gerenciamento de instituições de ensino.</p>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">Links Rápidos</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="#" class="text-white">Documentação</a></li>
+                        <li><a href="#" class="text-white">Suporte</a></li>
+                        <li><a href="#" class="text-white">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="text-uppercase mb-4">Contato</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> rafaelgoes@gestaoescolar.com</li>
+                        <li><i class="fas fa-phone me-2"></i> (91) 99352-6939</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 Sistema de Gestão Escolar. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
