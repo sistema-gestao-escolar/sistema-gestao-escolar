@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Lista de Alunos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="css/lista-de-alunos.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--primary-color);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap me-2"></i>
+                Sistema de Gestão Escolar
+            </a>
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro-aluno.html"><i class="fas fa-user-plus me-1"></i> Cadastro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="lista-de-alunos.html"><i class="fas fa-list-ul me-1"></i> Alunos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="turmas.html"><i class="fas fa-chalkboard me-1"></i> Turmas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="relatorios.html"><i class="fas fa-chart-bar me-1"></i> Relatórios</a>
+                    </li>
+                </ul>
+                <form class="d-flex align-items-center w-50 ms-3" id="form-busca">
+                    <div class="input-group">
+                        <input class="form-control" type="search" id="input-busca" placeholder="Buscar aluno..." aria-label="Search">
+                        <button class="btn btn-light" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i> Admin
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Perfil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Configurações</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header shadow">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="fw-bold mb-3">Lista de Alunos</h1>
+                    <p class="lead mb-0">Visualize e gerencie todos os alunos cadastrados no sistema</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="cadastro-aluno.html" class="btn btn-light btn-lg">
+                        <i class="fas fa-user-plus me-2"></i> Novo Aluno
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Stats Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-4">
+                <div class="card stats-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-muted mb-2">Total de Alunos</h6>
+                                <h3 class="mb-0">1,248</h3>
+                            </div>
+                            <div class="bg-primary bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-users text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card stats-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-muted mb-2">Alunos Ativos</h6>
+                                <h3 class="mb-0">1,120</h3>
+                            </div>
+                            <div class="bg-success bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-user-check text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card stats-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-muted mb-2">Novos este mês</h6>
+                                <h3 class="mb-0">87</h3>
+                            </div>
+                            <div class="bg-info bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-user-plus text-info"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card stats-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-muted mb-2">Inadimplentes</h6>
+                                <h3 class="mb-0">45</h3>
+                            </div>
+                            <div class="bg-warning bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-exclamation-triangle text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label for="statusFilter" class="form-label">Status</label>
+                    <select class="form-select" id="statusFilter">
+                        <option value="">Todos</option>
+                        <option value="Ativo">Ativo</option>
+                        <option value="Inativo">Inativo</option>
+                        <option value="Trancado">Trancado</option>
+                        <option value="Formado">Formado</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="cursoFilter" class="form-label">Curso</label>
+                    <select class="form-select" id="cursoFilter">
+                        <option value="">Todos</option>
+                        <option value="Ciência da Computação">Ciência da Computação</option>
+                        <option value="Engenharia de Software">Engenharia de Software</option>
+                        <option value="Análise e Desenvolvimento de Sistemas">Análise e Desenvolvimento de Sistemas</option>
+                        <option value="Design Gráfico">Design Gráfico</option>
+                        <option value="Administração">Administração</option>
+                        <option value="Direito">Direito</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="turmaFilter" class="form-label">Turma</label>
+                    <select class="form-select" id="turmaFilter">
+                        <option value="">Todas</option>
+                        <option value="A">Turma A</option>
+                        <option value="B">Turma B</option>
+                        <option value="C">Turma C</option>
+                        <option value="D">Turma D</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="periodoFilter" class="form-label">Período</label>
+                    <select class="form-select" id="periodoFilter">
+                        <option value="">Todos</option>
+                        <option value="Manhã">Manhã</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Noite">Noite</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-between align-items-center">
+                    <button class="btn btn-outline-secondary" id="resetFilters">
+                        <i class="fas fa-filter-circle-xmark me-2"></i> Limpar Filtros
+                    </button>
+                    <div class="export-buttons">
+                        <button class="btn btn-outline-primary" id="exportExcel">
+                            <i class="fas fa-file-excel me-2"></i> Excel
+                        </button>
+                        <button class="btn btn-outline-danger" id="exportPDF">
+                            <i class="fas fa-file-pdf me-2"></i> PDF
+                        </button>
+                        <button class="btn btn-outline-dark" id="printList">
+                            <i class="fas fa-print me-2"></i> Imprimir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Students Table -->
+        <div class="card card-dashboard">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="fas fa-users me-2"></i> Todos os Alunos
+                </h5>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="showInactive">
+                    <label class="form-check-label" for="showInactive">Mostrar inativos</label>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="studentsTable" class="table table-hover align-middle mb-0" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th width="50px">Foto</th>
+                            <th>Nome</th>
+                            <th>Matrícula</th>
+                            <th>Curso</th>
+                            <th>Turma</th>
+                            <th>Status</th>
+                            <th>Contato</th>
+                            <th width="120px">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="img/rafaelgoes.png" class="student-avatar" alt="Rafael Góes">
+                            </td>
+                            <td>
+                                <strong>Rafael Góes</strong>
+                                <div class="text-muted small">rafael.goes@email.com</div>
+                            </td>
+                            <td>20230001</td>
+                            <td>
+                                <span class="badge bg-primary badge-curso">Ciência da Computação</span>
+                            </td>
+                            <td>Turma A</td>
+                            <td>
+                                <span class="badge bg-success">Ativo</span>
+                            </td>
+                            <td>
+                                <div>(91) 99253-6939</div>
+                                <div class="text-muted small">rafael.goes@email.com</div>
+                            </td>
+                            <td>
+                                <!-- Visualizar -->
+                                <button class="btn btn-sm btn-action btn-outline-primary" data-mdb-toggle="tooltip" 
+                                title="Visualizar" onclick="window.location.href='detalhe-aluno.html'"><i class="fas fa-eye"></i>
+                                </button>
+
+                                <!-- Editar -->
+                                <button class="btn btn-sm btn-action btn-outline-secondary" 
+                                data-mdb-toggle="tooltip" 
+                                title="Editar" 
+                                onclick="window.location.href='atualizar-aluno.html'">
+                                <i class="fas fa-pencil-alt"></i>
+                                </button>
+
+                                <!-- Desativar -->
+                                <button class="btn btn-sm btn-action btn-outline-danger" 
+                                data-mdb-toggle="tooltip" 
+                                title="Desativar" 
+                                onclick="window.location.href='desativar.html'">
+                                <i class="fas fa-user-slash"></i>
+                                </button>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="img/luancarvalho.png" class="student-avatar" alt="Luan Carvalho">
+                            </td>
+                            <td>
+                                <strong>Luan Carvalho</strong>
+                                <div class="text-muted small">luan.carvalho@email.com</div>
+                            </td>
+                            <td>20230002</td>
+                            <td>
+                                <span class="badge bg-info badge-curso">Engenharia de Software</span>
+                            </td>
+                            <td>Turma B</td>
+                            <td>
+                                <span class="badge bg-success">Ativo</span>
+                            </td>
+                            <td>
+                                <div>(91) 9999-9988</div>
+                                <div class="text-muted small">luan.carvalho@email.com</div>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-action btn-outline-primary" data-mdb-toggle="tooltip" title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-secondary" data-mdb-toggle="tooltip" title="Editar">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-danger" data-mdb-toggle="tooltip" title="Desativar">
+                                    <i class="fas fa-user-slash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="img/igorfalcao.png" class="student-avatar" alt="Igor Falcão">
+                            </td>
+                            <td>
+                                <strong>Igor Falcão</strong>
+                                <div class="text-muted small">igor.falcao@email.com</div>
+                            </td>
+                            <td>20230003</td>
+                            <td>
+                                <span class="badge bg-warning badge-curso">Inteligência Artificial</span>
+                            </td>
+                            <td>Turma C</td>
+                            <td>
+                                <span class="badge bg-warning">Inadimplente</span>
+                            </td>
+                            <td>
+                                <div>(91) 9888-9999</div>
+                                <div class="text-muted small">igor.falcao@email.com</div>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-action btn-outline-primary" data-mdb-toggle="tooltip" title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-secondary" data-mdb-toggle="tooltip" title="Editar">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-danger" data-mdb-toggle="tooltip" title="Desativar">
+                                    <i class="fas fa-user-slash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="img/marcusbatista.png" class="student-avatar" alt="Marcus Batista">
+                            </td>
+                            <td>
+                                <strong>Marcus Batista</strong>
+                                <div class="text-muted small">marcus.batista@email.com</div>
+                            </td>
+                            <td>20230004</td>
+                            <td>
+                                <span class="badge bg-danger badge-curso">Administração</span>
+                            </td>
+                            <td>Turma D</td>
+                            <td>
+                                <span class="badge bg-secondary">Formado</span>
+                            </td>
+                            <td>
+                                <div>(91) 97779-9999</div>
+                                <div class="text-muted small">marcus.batista@email.com</div>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-action btn-outline-primary" data-mdb-toggle="tooltip" title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-secondary" data-mdb-toggle="tooltip" title="Editar">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-danger" data-mdb-toggle="tooltip" title="Desativar">
+                                    <i class="fas fa-user-slash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="img/emanuelrodrigues.png" class="student-avatar" alt="Emanuel Rodriguês">
+                            </td>
+                            <td>
+                                <strong>Emanuel Rodriguês</strong>
+                                <div class="text-muted small">emanuel.rodrigues@email.com</div>
+                            </td>
+                            <td>20230005</td>
+                            <td>
+                                <span class="badge bg-success badge-curso">Análise e Desenvolvimento de Sistemas</span>
+                            </td>
+                            <td>Turma A</td>
+                            <td>
+                                <span class="badge bg-dark">Trancado</span>
+                            </td>
+                            <td>
+                                <div>(91) 98765-0000</div>
+                                <div class="text-muted small">emanuel.rodrigues@email.com</div>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-action btn-outline-primary" data-mdb-toggle="tooltip" title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-secondary" data-mdb-toggle="tooltip" title="Editar">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-danger" data-mdb-toggle="tooltip" title="Desativar">
+                                    <i class="fas fa-user-slash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+
+    <script src="js/lista-de-alunos.js"></script>
+
+</body>
+</html>
