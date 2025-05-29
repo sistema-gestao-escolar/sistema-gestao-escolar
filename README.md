@@ -1,5 +1,7 @@
 # 📚 Site de Cadastro de Alunos
 
+![Capa](img/imagem-readme/capa.png)
+
 Este Trabalho descreve o desenvolvimento de um sistema web voltado para o cadastro de alunos, com ênfase na otimização da gestão acadêmica por meio de uma interface responsiva e de fácil usabilidade. O projeto contempla aprimoramentos na estrutura da aplicação, incluindo transições dinâmicas entre páginas, escolha criteriosa de um template adequado ao propósito do sistema, bem como a utilização de tecnologias como HTML, CSS, JavaScript e frameworks específicos para o desenvolvimento front-end.
 
 A proposta tem como base os conhecimentos adquiridos na disciplina de Códigos de Alta Performance - Web, integrando conceitos relacionados ao desenvolvimento web, interatividade e usabilidade. O objetivo central consiste em tornar os processos acadêmicos mais ágeis, acessíveis e eficientes, por meio de uma aplicação que atenda aos princípios de responsividade e experiência do usuário (UX).
