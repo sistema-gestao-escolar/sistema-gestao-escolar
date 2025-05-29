@@ -53,6 +53,50 @@ As páginas destinadas à visualização de dados, como a "Lista de Alunos", faz
 
 A separação clara entre os arquivos de HTML, CSS e JavaScript reforça a modularidade do projeto, tornando-o escalável e facilitando futuras expansões. Isso inclui a possibilidade de adicionar novos campos nos formulários, incluir novas páginas ou integrar funcionalidades adicionais ao sistema de forma eficiente e sem comprometer a estrutura existente.
 
+### 📂 Estrutura de Pastas e Arquivos
+```SISTEMA-GESTAO-ESCOLAR
+├── 📁 css
+│   ├── cadastro-aluno.css
+│   ├── detalhes-aluno.css
+│   ├── index.css
+│   ├── lista-de-alunos.css
+│   ├── notas.css
+│   ├── relatorio.css
+│   ├── sobre.css
+│   └── turmas.css
+│
+├── 📁 img
+│   ├── imagem-readme
+│   │   └── capa.png
+│   ├── davi-lima.png
+│   ├── emanuelrodrigues.png
+│   ├── erminio.png
+│   ├── igorfalcao.png
+│   ├── luancarvalho.png
+│   ├── marcusbabista.png
+│   └── rafaelgoes.png
+│
+├── 📁 js
+│   ├── cadastro-aluno.js
+│   ├── detalhes-aluno.js
+│   ├── index.js
+│   ├── lista-de-alunos.js
+│   ├── nota.js
+│   ├── relatorio.js
+│   └── turmas.js
+│
+├── cadastro-aluno.html
+├── detalhe-aluno.html
+├── index.html
+├── lista-de-alunos.html
+├── notas.html
+├── relatorios.html
+├── sobre.html
+├── turmas.html
+├── LICENSE
+└── README.md
+```
+
 ## ⚡ Incremento da Interatividade com JavaScript
 
 A interatividade do sistema foi significativamente aprimorada com a implementação de funcionalidades desenvolvidas em JavaScript, proporcionando uma experiência mais dinâmica e envolvente para o usuário. A integração entre JavaScript e o framework Bootstrap foi essencial para a criação de componentes responsivos, como a barra de navegação.
