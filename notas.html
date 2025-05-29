@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sistema de Gestão Escolar | Lançamento de Notas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet">
+    <script src="css/notas.css"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #37A35A;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+                
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+                
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .card-lancamento {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: none;
+            margin-bottom: 2rem;
+        }
+        
+        .card-header {
+            background-color: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            font-weight: 600;
+            padding: 1.25rem 1.5rem;
+            border-radius: 10px 10px 0 0 !important;
+        }
+        
+        .table-responsive {
+            border-radius: 0 0 10px 10px;
+            overflow: hidden;
+        }
+        
+        .table thead th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .table tbody tr {
+            transition: all 0.2s;
+        }
+        
+        .table tbody tr:hover {
+            background-color: rgba(55, 163, 90, 0.05);
+        }
+        
+        .input-nota {
+            width: 70px;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .input-nota:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(55, 163, 90, 0.2);
+        }
+        
+        .badge-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.75rem;
+        }
+        
+        .filters-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .btn-lancar {
+            letter-spacing: 1px;
+            font-weight: 600;
+            padding: 8px 16px;
+        }
+        
+        .pagination .page-item.active .page-link {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .pagination .page-link {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--primary-color);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap me-2"></i>
+                Sistema de Gestão Escolar
+            </a>
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro-aluno.html"><i class="fas fa-user-plus me-1"></i> Alunos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gerenciar-turmas.html"><i class="fas fa-chalkboard me-1"></i> Turmas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="lancar-notas.html"><i class="fas fa-clipboard-check me-1"></i> Notas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="relatorios.html"><i class="fas fa-chart-bar me-1"></i> Relatórios</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i> Prof. Oliveira
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Perfil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Configurações</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header shadow">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="fw-bold mb-3">Lançamento de Notas</h1>
+                    <p class="lead mb-0">Registre as avaliações dos alunos de forma simples e eficiente</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <button class="btn btn-light btn-lg" data-mdb-toggle="modal" data-mdb-target="#configAvaliacaoModal">
+                        <i class="fas fa-cog me-2"></i> Configurar Avaliação
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="turmaSelect" class="form-label">Turma</label>
+                    <select class="form-select" id="turmaSelect">
+                        <option value="" selected disabled>Selecione uma turma</option>
+                        <option value="1">Turma A - Ciência da Computação (Manhã)</option>
+                        <option value="2">Turma B - Engenharia de Software (Tarde)</option>
+                        <option value="3">Turma C - Análise de Sistemas (Noite)</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="disciplinaSelect" class="form-label">Disciplina</label>
+                    <select class="form-select" id="disciplinaSelect" disabled>
+                        <option value="" selected disabled>Selecione primeiro a turma</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="avaliacaoSelect" class="form-label">Avaliação</label>
+                    <select class="form-select" id="avaliacaoSelect" disabled>
+                        <option value="" selected disabled>Selecione primeiro a disciplina</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-end">
+                    <button class="btn btn-primary" id="carregarAlunos" disabled>
+                        <i class="fas fa-sync-alt me-2"></i> Carregar Alunos
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notas Table -->
+        <div class="card card-lancamento">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="fas fa-clipboard-list me-2"></i> Lançamento de Notas
+                </h5>
+                <div>
+                    <span class="me-3"><strong>Disciplina:</strong> <span id="disciplinaAtual">-</span></span>
+                    <span><strong>Avaliação:</strong> <span id="avaliacaoAtual">-</span></span>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="notasTable" class="table table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th width="50px">#</th>
+                            <th>Aluno</th>
+                            <th>Matrícula</th>
+                            <th>Nota</th>
+                            <th>Faltas</th>
+                            <th>Status</th>
+                            <th width="120px">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Exemplo de linha - os dados seriam carregados dinamicamente -->
+                        <tr>
+                            <td>1</td>
+                            <td>Davi Lima</td>
+                            <td>20230001</td>
+                            <td>
+                                <input type="number" class="input-nota" min="0" max="10" step="0.1" value="8.5">
+                            </td>
+                            <td>
+                                <input type="number" class="input-nota" min="0" max="10" value="1">
+                            </td>
+                            <td>
+                                <span class="badge bg-success badge-status">Aprovado</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-lancar btn-success">
+                                    <i class="fas fa-check me-1"></i> Salvar
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Rafael Góes</td>
+                            <td>20230002</td>
+                            <td>
+                                <input type="number" class="input-nota" min="0" max="10" step="0.1" value="7.0">
+                            </td>
+                            <td>
+                                <input type="number" class="input-nota" min="0" max="10" value="0">
+                            </td>
+                            <td>
+                                <span class="badge bg-success badge-status">Aprovado</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-lancar btn-success">
+                                    <i class="fas fa-check me-1"></i> Salvar
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Marcus Batista</td>
+                            <td>20230003</td>
+                            <td>
+                                <input type="number" class="input-nota" min="0" max="10" step="0.1" value="4.5">
+                            </td>
+                            <td>
+                                <input type="number" class="input-nota" min="0" max="10" value="3">
+                            </td>
+                            <td>
+                                <span class="badge bg-warning badge-status">Recuperação</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-lancar btn-success">
+                                    <i class="fas fa-check me-1"></i> Salvar
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Luan Carvalho</td>
+                            <td>20230004</td>
+                            <td>
+                                <input type="number" class="input-nota" min="0" max="10" step="0.1" value="">
+                            </td>
+                            <td>
+                                <input type="number" class="input-nota" min="0" max="10" value="0">
+                            </td>
+                            <td>
+                                <span class="badge bg-secondary badge-status">Pendente</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-lancar btn-success">
+                                    <i class="fas fa-check me-1"></i> Salvar
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <div>
+                    <button class="btn btn-outline-primary">
+                        <i class="fas fa-save me-2"></i> Salvar Todas as Alterações
+                    </button>
+                </div>
+                <div>
+                    <span class="me-3"><strong>Média da Turma:</strong> 7.2</span>
+                    <span><strong>Aprovados:</strong> 15/20 (75%)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Configurar Avaliação -->
+    <div class="modal fade" id="configAvaliacaoModal" tabindex="-1" aria-labelledby="configAvaliacaoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="configAvaliacaoModalLabel"><i class="fas fa-cog me-2"></i> Configurar Avaliação</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAvaliacao">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="avaliacaoNome" class="form-label">Nome da Avaliação</label>
+                                <input type="text" class="form-control" id="avaliacaoNome" placeholder="Ex: Prova Bimestral 1" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="avaliacaoPeso" class="form-label">Peso</label>
+                                <input type="number" class="form-control" id="avaliacaoPeso" min="1" max="10" value="1" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="avaliacaoData" class="form-label">Data da Avaliação</label>
+                                <input type="date" class="form-control" id="avaliacaoData" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="avaliacaoTipo" class="form-label">Tipo de Avaliação</label>
+                                <select class="form-select" id="avaliacaoTipo" required>
+                                    <option value="" selected disabled>Selecione o tipo</option>
+                                    <option value="Prova">Prova</option>
+                                    <option value="Trabalho">Trabalho</option>
+                                    <option value="Seminário">Seminário</option>
+                                    <option value="Atividade Prática">Atividade Prática</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="avaliacaoDescricao" class="form-label">Descrição</label>
+                                <textarea class="form-control" id="avaliacaoDescricao" rows="3" placeholder="Detalhes sobre a avaliação"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="avaliacaoNotaMinima" class="form-label">Nota Mínima para Aprovação</label>
+                                <input type="number" class="form-control" id="avaliacaoNotaMinima" min="0" max="10" step="0.1" value="6.0" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="avaliacaoFaltasMaximas" class="form-label">Faltas Máximas Permitidas</label>
+                                <input type="number" class="form-control" id="avaliacaoFaltasMaximas" min="0" max="10" value="3" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="salvarAvaliacao">Salvar Configurações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center mt-5">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-6 text-md-start">
+                    <p class="mb-0 text-white">&copy; 2023 Sistema de Gestão Escolar. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+    <script src="js/nota.js"></script>
+</body>
+</html>
