@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sistema de Gestão Escolar | Gerenciar Turmas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="css/turmas.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--primary-color);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap me-2"></i>
+                Sistema de Gestão Escolar
+            </a>
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro-aluno.html"><i class="fas fa-user-plus me-1"></i> Alunos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="gerenciar-turmas.html"><i class="fas fa-chalkboard me-1"></i> Turmas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="disciplinas.html"><i class="fas fa-book me-1"></i> Disciplinas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="relatorios.html"><i class="fas fa-chart-bar me-1"></i> Relatórios</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i> Admin
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Perfil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Configurações</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header shadow">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="fw-bold mb-3">Gerenciamento de Turmas</h1>
+                    <p class="lead mb-0">Organize e administre todas as turmas da instituição</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <button class="btn btn-light btn-lg" data-mdb-toggle="modal" data-mdb-target="#novaTurmaModal">
+                        <i class="fas fa-plus me-2"></i> Nova Turma
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label for="cursoFilter" class="form-label">Curso</label>
+                    <select class="form-select" id="cursoFilter">
+                        <option value="">Todos os Cursos</option>
+                        <option value="1">Ciência da Computação</option>
+                        <option value="2">Engenharia de Software</option>
+                        <option value="3">Análise e Desenvolvimento de Sistemas</option>
+                        <option value="4">Design Gráfico</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="periodoFilter" class="form-label">Período</label>
+                    <select class="form-select" id="periodoFilter">
+                        <option value="">Todos os Períodos</option>
+                        <option value="1">1º Período</option>
+                        <option value="2">2º Período</option>
+                        <option value="3">3º Período</option>
+                        <option value="4">4º Período</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="turnoFilter" class="form-label">Turno</label>
+                    <select class="form-select" id="turnoFilter">
+                        <option value="">Todos os Turnos</option>
+                        <option value="Manhã">Manhã</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Noite">Noite</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="statusFilter" class="form-label">Status</label>
+                    <select class="form-select" id="statusFilter">
+                        <option value="">Todos os Status</option>
+                        <option value="Ativa">Ativa</option>
+                        <option value="Inativa">Inativa</option>
+                        <option value="Concluída">Concluída</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-between align-items-center">
+                    <button class="btn btn-outline-secondary" id="resetFilters">
+                        <i class="fas fa-filter-circle-xmark me-2"></i> Limpar Filtros
+                    </button>
+                    <div>
+                        <button class="btn btn-outline-primary me-2" id="exportTurmas">
+                            <i class="fas fa-file-export me-2"></i> Exportar
+                        </button>
+                        <button class="btn btn-outline-dark" id="printTurmas">
+                            <i class="fas fa-print me-2"></i> Imprimir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Turmas Table -->
+        <div class="card card-dashboard">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="fas fa-chalkboard me-2"></i> Lista de Turmas
+                </h5>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="showInactive">
+                    <label class="form-check-label" for="showInactive">Mostrar inativas</label>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="turmasTable" class="table table-hover align-middle mb-0" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Curso</th>
+                            <th>Período</th>
+                            <th>Turno</th>
+                            <th>Vagas</th>
+                            <th>Alunos</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TUR-2023-A</td>
+                            <td>Turma A - CC</td>
+                            <td>Ciência da Computação</td>
+                            <td>3º Período</td>
+                            <td>Manhã</td>
+                            <td>30</td>
+                            <td>28</td>
+                            <td><span class="badge bg-success">Ativa</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-action btn-outline-primary" data-mdb-toggle="tooltip" title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-secondary" data-mdb-toggle="tooltip" title="Editar">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-danger" data-mdb-toggle="tooltip" title="Desativar">
+                                    <i class="fas fa-ban"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>TUR-2023-B</td>
+                            <td>Turma B - ES</td>
+                            <td>Engenharia de Software</td>
+                            <td>2º Período</td>
+                            <td>Tarde</td>
+                            <td>25</td>
+                            <td>22</td>
+                            <td><span class="badge bg-success">Ativa</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-action btn-outline-primary" data-mdb-toggle="tooltip" title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-secondary" data-mdb-toggle="tooltip" title="Editar">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-danger" data-mdb-toggle="tooltip" title="Desativar">
+                                    <i class="fas fa-ban"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>TUR-2023-C</td>
+                            <td>Turma C - ADS</td>
+                            <td>Análise e Desenvolvimento de Sistemas</td>
+                            <td>1º Período</td>
+                            <td>Noite</td>
+                            <td>35</td>
+                            <td>30</td>
+                            <td><span class="badge bg-success">Ativa</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-action btn-outline-primary" data-mdb-toggle="tooltip" title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-secondary" data-mdb-toggle="tooltip" title="Editar">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-danger" data-mdb-toggle="tooltip" title="Desativar">
+                                    <i class="fas fa-ban"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>TUR-2022-A</td>
+                            <td>Turma A - DG</td>
+                            <td>Design Gráfico</td>
+                            <td>4º Período</td>
+                            <td>Manhã</td>
+                            <td>20</td>
+                            <td>18</td>
+                            <td><span class="badge bg-secondary">Concluída</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-action btn-outline-primary" data-mdb-toggle="tooltip" title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-secondary" data-mdb-toggle="tooltip" title="Editar">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-outline-success" data-mdb-toggle="tooltip" title="Reativar">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nova Turma -->
+    <div class="modal fade modal-turma" id="novaTurmaModal" tabindex="-1" aria-labelledby="novaTurmaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="novaTurmaModalLabel"><i class="fas fa-plus-circle me-2"></i> Nova Turma</h5>
+                    <button type="button" class="btn-close btn-close-white" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formTurma">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="turmaNome" class="form-label">Nome da Turma</label>
+                                <input type="text" class="form-control" id="turmaNome" placeholder="Ex: Turma A - CC" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="turmaCodigo" class="form-label">Código da Turma</label>
+                                <input type="text" class="form-control" id="turmaCodigo" placeholder="Ex: TUR-2023-A" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="turmaCurso" class="form-label">Curso</label>
+                                <select class="form-select" id="turmaCurso" required>
+                                    <option value="" selected disabled>Selecione um curso</option>
+                                    <option value="1">Ciência da Computação</option>
+                                    <option value="2">Engenharia de Software</option>
+                                    <option value="3">Análise e Desenvolvimento de Sistemas</option>
+                                    <option value="4">Design Gráfico</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="turmaPeriodo" class="form-label">Período</label>
+                                <select class="form-select" id="turmaPeriodo" required>
+                                    <option value="" selected disabled>Selecione o período</option>
+                                    <option value="1">1º Período</option>
+                                    <option value="2">2º Período</option>
+                                    <option value="3">3º Período</option>
+                                    <option value="4">4º Período</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="turmaTurno" class="form-label">Turno</label>
+                                <select class="form-select" id="turmaTurno" required>
+                                    <option value="" selected disabled>Selecione o turno</option>
+                                    <option value="Manhã">Manhã</option>
+                                    <option value="Tarde">Tarde</option>
+                                    <option value="Noite">Noite</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="turmaVagas" class="form-label">Número de Vagas</label>
+                                <input type="number" class="form-control" id="turmaVagas" min="1" max="50" value="30" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="turmaDescricao" class="form-label">Descrição (Opcional)</label>
+                                <textarea class="form-control" id="turmaDescricao" rows="3" placeholder="Informações adicionais sobre a turma"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="salvarTurma">Salvar Turma</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detalhes Turma -->
+    <div class="modal fade modal-turma" id="detalhesTurmaModal" tabindex="-1" aria-labelledby="detalhesTurmaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detalhesTurmaModalLabel"><i class="fas fa-info-circle me-2"></i> Detalhes da Turma</h5>
+                    <button type="button" class="btn-close btn-close-white" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <h4>Turma A - CC</h4>
+                            <p class="text-muted mb-1">Código: TUR-2023-A</p>
+                            <p class="text-muted">Ciência da Computação - 3º Período - Manhã</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <span class="badge bg-success">Ativa</span>
+                            <p class="text-muted mt-2">Vagas: 28/30</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="fas fa-users me-2"></i> Alunos Matriculados</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive" style="max-height: 300px;">
+                                        <table class="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Matrícula</th>
+                                                    <th>Nome</th>
+                                                    <th>Ações</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>20230001</td>
+                                                    <td>João Silva</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-danger">
+                                                            <i class="fas fa-user-minus"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>20230002</td>
+                                                    <td>Maria Oliveira</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-danger">
+                                                            <i class="fas fa-user-minus"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <!-- Mais alunos -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="fas fa-book me-2"></i> Disciplinas</h6>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Algoritmos e Estruturas de Dados
+                                            <span class="badge bg-primary">Prof. Ana</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Banco de Dados
+                                            <span class="badge bg-primary">Prof. Carlos</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Programação Web
+                                            <span class="badge bg-primary">Prof. João</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="mb-0"><i class="fas fa-calendar-alt me-2"></i> Horário das Aulas</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Disciplina</th>
+                                            <th>Dia</th>
+                                            <th>Horário</th>
+                                            <th>Sala</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Algoritmos e Estruturas de Dados</td>
+                                            <td>Segunda/Quarta</td>
+                                            <td>08:00 - 10:00</td>
+                                            <td>Lab 12</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Banco de Dados</td>
+                                            <td>Terça/Quinta</td>
+                                            <td>10:00 - 12:00</td>
+                                            <td>Sala 45</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Programação Web</td>
+                                            <td>Sexta</td>
+                                            <td>14:00 - 18:00</td>
+                                            <td>Lab 08</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center mt-5">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-6 text-md-start">
+                    <p class="mb-0 text-white">&copy; 2023 Sistema de Gestão Escolar. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    
+    <script src="js/turmas.js"></script>
+</body>
+</html>
