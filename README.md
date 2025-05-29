@@ -27,4 +27,5 @@ O CSS foi empregado para estilizar o site, proporcionando um design agradável e
 ### JavaScript (Interatividade)
 O JavaScript foi implementado para adicionar interatividade ao site, possibilitando a validação de formulários, a manipulação dinâmica de elementos na página e a melhoria da usabilidade geral do sistema. Com ele, foi possível criar funcionalidades que aprimoram a experiência do usuário, tornando o processo de cadastro e consulta de alunos mais dinâmico e eficiente. A combinação dessas tecnologias permitiu o desenvolvimento de um sistema completo e funcional, atendendo aos requisitos propostos para um gerenciamento eficaz de alunos.
 
+##
 
