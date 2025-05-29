@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sistema de Gestão Escolar | Relatórios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/relatorio.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--primary-color);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap me-2"></i>
+                Sistema de Gestão Escolar
+            </a>
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro-aluno.html"><i class="fas fa-user-plus me-1"></i> Alunos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gerenciar-turmas.html"><i class="fas fa-chalkboard me-1"></i> Turmas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lancar-notas.html"><i class="fas fa-clipboard-check me-1"></i> Notas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="relatorios.html"><i class="fas fa-chart-bar me-1"></i> Relatórios</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i> Admin
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Perfil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Configurações</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header shadow">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="fw-bold mb-3">Relatórios Acadêmicos</h1>
+                    <p class="lead mb-0">Análises e dados para uma gestão escolar mais eficiente</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <button class="btn btn-light btn-lg" id="gerarRelatorioCompleto">
+                        <i class="fas fa-file-export me-2"></i> Relatório Completo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Quick Reports -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h3 class="mb-4"><i class="fas fa-rocket me-2"></i> Relatórios Rápidos</h3>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="report-card text-center">
+                    <div class="report-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h5>Alunos Matriculados</h5>
+                    <p class="text-muted">Visão geral por curso e turma</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary" data-mdb-toggle="modal" data-mdb-target="#alunosModal">Gerar</a>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="report-card text-center">
+                    <div class="report-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h5>Desempenho por Turma</h5>
+                    <p class="text-muted">Médias e taxas de aprovação</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">Gerar</a>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="report-card text-center">
+                    <div class="report-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h5>Frequência Mensal</h5>
+                    <p class="text-muted">Registro de presenças e faltas</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">Gerar</a>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="report-card text-center">
+                    <div class="report-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h5>Alunos em Risco</h5>
+                    <p class="text-muted">Identificação de baixo desempenho</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">Gerar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <h4 class="mb-4"><i class="fas fa-filter me-2"></i> Filtros Avançados</h4>
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label for="reportCurso" class="form-label">Curso</label>
+                    <select class="form-select" id="reportCurso">
+                        <option value="" selected>Todos os Cursos</option>
+                        <option value="1">Ciência da Computação</option>
+                        <option value="2">Engenharia de Software</option>
+                        <option value="3">Análise e Desenvolvimento de Sistemas</option>
+                        <option value="4">Design Gráfico</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="reportTurma" class="form-label">Turma</label>
+                    <select class="form-select" id="reportTurma">
+                        <option value="" selected>Todas as Turmas</option>
+                        <option value="A">Turma A</option>
+                        <option value="B">Turma B</option>
+                        <option value="C">Turma C</option>
+                        <option value="D">Turma D</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="reportPeriodo" class="form-label">Período</label>
+                    <select class="form-select" id="reportPeriodo">
+                        <option value="" selected>Todos os Períodos</option>
+                        <option value="1">1º Período</option>
+                        <option value="2">2º Período</option>
+                        <option value="3">3º Período</option>
+                        <option value="4">4º Período</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="reportAno" class="form-label">Ano Letivo</label>
+                    <select class="form-select" id="reportAno">
+                        <option value="2023" selected>2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="reportDataInicio" class="form-label">Data Inicial</label>
+                    <input type="date" class="form-control" id="reportDataInicio">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="reportDataFim" class="form-label">Data Final</label>
+                    <input type="date" class="form-control" id="reportDataFim">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-between">
+                    <button class="btn btn-outline-secondary" id="resetReportFilters">
+                        <i class="fas fa-filter-circle-xmark me-2"></i> Limpar Filtros
+                    </button>
+                    <button class="btn btn-primary" id="applyFilters">
+                        <i class="fas fa-chart-line me-2"></i> Aplicar Filtros
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Results -->
+        <div class="row mt-4">
+            <div class="col-md-8">
+                <div class="info-card">
+                    <h4 class="mb-4"><i class="fas fa-chart-bar me-2"></i> Desempenho por Disciplina</h4>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                    <div class="export-buttons text-end">
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-file-image me-1"></i> Exportar Imagem
+                        </button>
+                        <button class="btn btn-sm btn-outline-success">
+                            <i class="fas fa-file-excel me-1"></i> Exportar Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <h4 class="mb-4"><i class="fas fa-chart-pie me-2"></i> Distribuição de Status</h4>
+                    <div class="chart-container">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                    <div class="export-buttons text-end mt-2">
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-file-image me-1"></i> Exportar Imagem
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="info-card">
+                    <h4 class="mb-4"><i class="fas fa-table me-2"></i> Detalhamento por Aluno</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Aluno</th>
+                                    <th>Matrícula</th>
+                                    <th>Turma</th>
+                                    <th>Média Geral</th>
+                                    <th>Faltas</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Davi Lima</td>
+                                    <td>20230001</td>
+                                    <td>Turma A</td>
+                                    <td>8.7</td>
+                                    <td>2</td>
+                                    <td><span class="badge bg-success badge-report">Aprovado</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye me-1"></i> Detalhes
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Rafael Góes</td>
+                                    <td>20230002</td>
+                                    <td>Turma A</td>
+                                    <td>7.5</td>
+                                    <td>1</td>
+                                    <td><span class="badge bg-success badge-report">Aprovado</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye me-1"></i> Detalhes
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Luan Carvalho</td>
+                                    <td>20230003</td>
+                                    <td>Turma B</td>
+                                    <td>5.8</td>
+                                    <td>5</td>
+                                    <td><span class="badge bg-warning badge-report">Recuperação</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye me-1"></i> Detalhes
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Marcus Batista</td>
+                                    <td>20230004</td>
+                                    <td>Turma C</td>
+                                    <td>4.2</td>
+                                    <td>8</td>
+                                    <td><span class="badge bg-danger badge-report">Reprovado</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye me-1"></i> Detalhes
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="export-buttons text-end mt-2">
+                        <button class="btn btn-sm btn-outline-success">
+                            <i class="fas fa-file-excel me-1"></i> Exportar Excel
+                        </button>
+                        <button class="btn btn-sm btn-outline-dark">
+                            <i class="fas fa-print me-1"></i> Imprimir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Alunos Matriculados -->
+    <div class="modal fade" id="alunosModal" tabindex="-1" aria-labelledby="alunosModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alunosModalLabel"><i class="fas fa-users me-2"></i> Relatório de Alunos Matriculados</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Curso</th>
+                                    <th>Turma</th>
+                                    <th>Total Alunos</th>
+                                    <th>Vagas Disponíveis</th>
+                                    <th>Taxa de Ocupação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Ciência da Computação</td>
+                                    <td>Turma A</td>
+                                    <td>28</td>
+                                    <td>2</td>
+                                    <td>93%</td>
+                                </tr>
+                                <tr>
+                                    <td>Engenharia de Software</td>
+                                    <td>Turma B</td>
+                                    <td>22</td>
+                                    <td>3</td>
+                                    <td>88%</td>
+                                </tr>
+                                <tr>
+                                    <td>Análise e Desenvolvimento de Sistemas</td>
+                                    <td>Turma C</td>
+                                    <td>30</td>
+                                    <td>5</td>
+                                    <td>86%</td>
+                                </tr>
+                                <tr>
+                                    <td>Design Gráfico</td>
+                                    <td>Turma D</td>
+                                    <td>18</td>
+                                    <td>2</td>
+                                    <td>90%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="chart-container mt-4">
+                        <canvas id="alunosChart"></canvas>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fas fa-print me-1"></i> Imprimir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center mt-5">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-6 text-md-start">
+                    <p class="mb-0 text-white">&copy; 2023 Sistema de Gestão Escolar. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+    <script src="js/relatorio.js"></script>
+</body>
+</html>
