@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sistema de Gestão Escolar | Detalhes do Aluno</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/detalhes-aluno.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--primary-color);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap me-2"></i>
+                Sistema de Gestão Escolar
+            </a>
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro-aluno.html"><i class="fas fa-user-plus me-1"></i> Cadastro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lista-de-alunos.html"><i class="fas fa-list-ul me-1"></i> Alunos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fas fa-id-card me-1"></i> Detalhes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="relatorios.html"><i class="fas fa-chart-bar me-1"></i> Relatórios</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i> Admin
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Perfil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Configurações</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header shadow">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="fw-bold mb-3">Detalhes do Aluno</h1>
+                    <p class="lead mb-0">Visualização completa das informações acadêmicas e pessoais</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="lista-de-alunos.html" class="btn btn-light btn-lg">
+                        <i class="fas fa-arrow-left me-2"></i> Voltar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="student-profile">
+            <div class="student-header">
+                <img src="img/davi-lima.png" class="student-photo" alt="Foto do Aluno" id="studentPhoto">
+                <h2 class="student-name" id="studentName">Davi Lima Serrão</h2>
+                <div class="student-id">Matrícula: <span id="studentId">20230045</span></div>
+                <span class="student-status status-active" id="studentStatus">Ativo</span>
+            </div>
+            
+            <!-- Tabs Navigation -->
+            <ul class="nav nav-tabs mb-4" id="studentTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="overview-tab" data-mdb-toggle="tab" data-mdb-target="#overview" type="button" role="tab">
+                        <i class="fas fa-user-circle me-2"></i> Visão Geral
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="academic-tab" data-mdb-toggle="tab" data-mdb-target="#academic" type="button" role="tab">
+                        <i class="fas fa-graduation-cap me-2"></i> Acadêmico
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="grades-tab" data-mdb-toggle="tab" data-mdb-target="#grades" type="button" role="tab">
+                        <i class="fas fa-clipboard-check me-2"></i> Notas
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="attendance-tab" data-mdb-toggle="tab" data-mdb-target="#attendance" type="button" role="tab">
+                        <i class="fas fa-calendar-check me-2"></i> Frequência
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="documents-tab" data-mdb-toggle="tab" data-mdb-target="#documents" type="button" role="tab">
+                        <i class="fas fa-file-alt me-2"></i> Documentos
+                    </button>
+                </li>
+            </ul>
+            
+            <!-- Tabs Content -->
+            <div class="tab-content" id="studentTabsContent">
+                <!-- Overview Tab -->
+                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="info-card">
+                                <h5><i class="fas fa-info-circle me-2"></i> Informações Pessoais</h5>
+                                <div class="info-item">
+                                    <div class="info-label">Nome Completo</div>
+                                    <div class="info-value" id="fullName">Davi Lima Serrão</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Data de Nascimento</div>
+                                    <div class="info-value" id="birthDate">15/03/2005 (20 anos)</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Gênero</div>
+                                    <div class="info-value" id="gender">Masculino</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">CPF</div>
+                                    <div class="info-value" id="cpf">123.456.789-00</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">RG</div>
+                                    <div class="info-value" id="rg">123456789</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-card">
+                                <h5><i class="fas fa-address-book me-2"></i> Informações de Contato</h5>
+                                <div class="info-item">
+                                    <div class="info-label">Email</div>
+                                    <div class="info-value" id="email">davilima@email.com</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Telefone</div>
+                                    <div class="info-value" id="phone">(91) 98765-4321</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Celular</div>
+                                    <div class="info-value" id="mobile">(91) 98765-4321</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Endereço</div>
+                                    <div class="info-value" id="address">Unnamed Road - Parque Verde, Belém - PA</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-card">
+                                <h5><i class="fas fa-user-friends me-2"></i> Responsável</h5>
+                                <div class="info-item">
+                                    <div class="info-label">Nome</div>
+                                    <div class="info-value" id="guardianName">Luan Carvalho</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Parentesco</div>
+                                    <div class="info-value" id="guardianRelation">Pai</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Telefone</div>
+                                    <div class="info-value" id="guardianPhone">(91) 91234-5678</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Email</div>
+                                    <div class="info-value" id="guardianEmail">luancarvalho@email.com</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-card">
+                                <h5><i class="fas fa-heartbeat me-2"></i> Informações Médicas</h5>
+                                <div class="info-item">
+                                    <div class="info-label">Tipo Sanguíneo</div>
+                                    <div class="info-value" id="bloodType">O+</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Alergias</div>
+                                    <div class="info-value" id="allergies">Penicilina</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Medicação Regular</div>
+                                    <div class="info-value" id="medication">Nenhuma</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Plano de Saúde</div>
+                                    <div class="info-value" id="healthInsurance">Não sei Nº 123456789</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Academic Tab -->
+                <div class="tab-pane fade" id="academic" role="tabpanel" aria-labelledby="academic-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="info-card">
+                                <h5><i class="fas fa-graduation-cap me-2"></i> Informações Acadêmicas</h5>
+                                <div class="info-item">
+                                    <div class="info-label">Matrícula</div>
+                                    <div class="info-value">20230045</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Data de Ingresso</div>
+                                    <div class="info-value">15/02/2023</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Curso</div>
+                                    <div class="info-value">Ciência da Computação</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Turma</div>
+                                    <div class="info-value">Turma A - Manhã</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Período</div>
+                                    <div class="info-value">3º Período</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Status</div>
+                                    <div class="info-value"><span class="badge bg-success">Ativo</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-card">
+                                <h5><i class="fas fa-chart-line me-2"></i> Desempenho Acadêmico</h5>
+                                <div class="info-item">
+                                    <div class="info-label">Média Geral</div>
+                                    <div class="info-value">8.7</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Frequência</div>
+                                    <div class="info-value">94%</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Posição na Turma</div>
+                                    <div class="info-value">5º de 32 alunos</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Créditos Concluídos</div>
+                                    <div class="info-value">480 de 3.200</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Previsão de Conclusão</div>
+                                    <div class="info-value">Dezembro/2026</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="info-card">
+                                <h5><i class="fas fa-book me-2"></i> Disciplinas Atuais</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Disciplina</th>
+                                                <th>Professor</th>
+                                                <th>Dias</th>
+                                                <th>Horário</th>
+                                                <th>Sala</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Códigos de Alta Performance - Web</td>
+                                                <td>Prof. Igor Falcão/td>
+                                                <td>Qui/Sex</td>
+                                                <td>08:00 - 10:00</td>
+                                                <td>Lab</td>
+                                                <td><span class="badge bg-success">Cursando</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Banco de Dados</td>
+                                                <td>Prof. Marcelo</td>
+                                                <td>Ter/Qui</td>
+                                                <td>10:00 - 12:00</td>
+                                                <td>Sala 45</td>
+                                                <td><span class="badge bg-success">Cursando</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Programação Web</td>
+                                                <td>Prof. Igor Falcão</td>
+                                                <td>Sex</td>
+                                                <td>14:00 - 18:00</td>
+                                                <td>Lab 08</td>
+                                                <td><span class="badge bg-success">Cursando</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grades Tab -->
+                <div class="tab-pane fade" id="grades" role="tabpanel" aria-labelledby="grades-tab">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="info-card">
+                                <h5><i class="fas fa-clipboard-list me-2"></i> Boletim Acadêmico</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered grade-table">
+                                        <thead>
+                                            <tr>
+                                                <th rowspan="2">Disciplina</th>
+                                                <th colspan="3" class="text-center">1º Bimestre</th>
+                                                <th colspan="3" class="text-center">2º Bimestre</th>
+                                                <th colspan="3" class="text-center">3º Bimestre</th>
+                                                <th colspan="3" class="text-center">4º Bimestre</th>
+                                                <th rowspan="2">Média Final</th>
+                                                <th rowspan="2">Situação</th>
+                                            </tr>
+                                            <tr>
+                                                <th>N1</th>
+                                                <th>N2</th>
+                                                <th>Média</th>
+                                                <th>N1</th>
+                                                <th>N2</th>
+                                                <th>Média</th>
+                                                <th>N1</th>
+                                                <th>N2</th>
+                                                <th>Média</th>
+                                                <th>N1</th>
+                                                <th>N2</th>
+                                                <th>Média</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Algoritmos e Estruturas de Dados</td>
+                                                <td>8.5</td>
+                                                <td>7.0</td>
+                                                <td>7.8</td>
+                                                <td>9.0</td>
+                                                <td>8.5</td>
+                                                <td>8.8</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>8.3</td>
+                                                <td><span class="badge bg-success">Aprovado</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Banco de Dados</td>
+                                                <td>7.0</td>
+                                                <td>8.0</td>
+                                                <td>7.5</td>
+                                                <td>6.5</td>
+                                                <td>7.5</td>
+                                                <td>7.0</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>7.3</td>
+                                                <td><span class="badge bg-success">Aprovado</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Programação Web</td>
+                                                <td>9.5</td>
+                                                <td>10.0</td>
+                                                <td>9.8</td>
+                                                <td>8.5</td>
+                                                <td>9.0</td>
+                                                <td>8.8</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>9.3</td>
+                                                <td><span class="badge bg-success">Aprovado</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Attendance Tab -->
+                <div class="tab-pane fade" id="attendance" role="tabpanel" aria-labelledby="attendance-tab">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="info-card">
+                                <h5><i class="fas fa-calendar-alt me-2"></i> Frequência por Disciplina</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Disciplina</th>
+                                                <th>Total de Aulas</th>
+                                                <th>Presenças</th>
+                                                <th>Faltas</th>
+                                                <th>Frequência</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Algoritmos e Estruturas de Dados</td>
+                                                <td>32</td>
+                                                <td>30</td>
+                                                <td>2</td>
+                                                <td>94%</td>
+                                                <td><span class="badge bg-success">Regular</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Banco de Dados</td>
+                                                <td>28</td>
+                                                <td>26</td>
+                                                <td>2</td>
+                                                <td>93%</td>
+                                                <td><span class="badge bg-success">Regular</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Programação Web</td>
+                                                <td>16</td>
+                                                <td>16</td>
+                                                <td>0</td>
+                                                <td>100%</td>
+                                                <td><span class="badge bg-success">Regular</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-card">
+                                <h5><i class="fas fa-chart-pie me-2"></i> Resumo de Frequência</h5>
+                                <div class="attendance-chart" id="attendanceChart">
+                                    <!-- Gráfico seria renderizado aqui com Chart.js ou similar -->
+                                    <img src="https://via.placeholder.com/500x300?text=Gráfico+de+Frequência" alt="Gráfico de Frequência" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-card">
+                                <h5><i class="fas fa-calendar-day me-2"></i> Últimas Ocorrências</h5>
+                                <div class="list-group">
+                                    <div class="list-group-item">
+                                        <div class="d-flex justify-content-between">
+                                            <strong>Falta em Algoritmos</strong>
+                                            <small class="text-muted">15/05/2023</small>
+                                        </div>
+                                        <p class="mb-0 small">Justificativa: Consulta médica</p>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <div class="d-flex justify-content-between">
+                                            <strong>Falta em Banco de Dados</strong>
+                                            <small class="text-muted">10/05/2023</small>
+                                        </div>
+                                        <p class="mb-0 small">Sem justificativa</p>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <div class="d-flex justify-content-between">
+                                            <strong>Atraso em Programação Web</strong>
+                                            <small class="text-muted">05/05/2023</small>
+                                        </div>
+                                        <p class="mb-0 small">Problemas no transporte</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Documents Tab -->
+                <div class="tab-pane fade" id="documents" role="tabpanel" aria-labelledby="documents-tab">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="info-card">
+                                <h5><i class="fas fa-file-contract me-2"></i> Documentos do Aluno</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Documento</th>
+                                                <th>Tipo</th>
+                                                <th>Data de Upload</th>
+                                                <th>Status</th>
+                                                <th>Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Histórico Escolar Anterior</td>
+                                                <td>Histórico</td>
+                                                <td>10/02/2023</td>
+                                                <td><span class="badge bg-success">Aprovado</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary"><i class="fas fa-download"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Cópia do RG</td>
+                                                <td>Identificação</td>
+                                                <td>10/02/2023</td>
+                                                <td><span class="badge bg-success">Aprovado</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary"><i class="fas fa-download"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Cópia do CPF</td>
+                                                <td>Identificação</td>
+                                                <td>10/02/2023</td>
+                                                <td><span class="badge bg-success">Aprovado</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary"><i class="fas fa-download"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Comprovante de Residência</td>
+                                                <td>Residência</td>
+                                                <td>10/02/2023</td>
+                                                <td><span class="badge bg-success">Aprovado</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary"><i class="fas fa-download"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Atestado Médico</td>
+                                                <td>Saúde</td>
+                                                <td>15/05/2023</td>
+                                                <td><span class="badge bg-warning">Pendente</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary"><i class="fas fa-download"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-end mt-4">
+                <a href="editar-aluno.html" class="btn btn-primary btn-action">
+                    <i class="fas fa-user-edit me-2"></i> Editar Cadastro
+                </a>
+                <button class="btn btn-success btn-action">
+                    <i class="fas fa-file-export me-2"></i> Gerar Relatório
+                </button>
+                <button class="btn btn-warning btn-action">
+                    <i class="fas fa-envelope me-2"></i> Enviar Mensagem
+                </button>
+                <button class="btn btn-danger btn-action" id="btn-excluir" data-mdb-toggle="modal" data-mdb-target="#deleteModal">
+                    <i class="fas fa-user-times me-2"></i> Desativar Aluno
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmar Desativação</h5>
+                    <button type="button" class="btn-close btn-close-white" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja desativar o aluno <strong>Davi Lima Serrão</strong> (Matrícula: 20230045)?</p>
+                    <p>Esta ação não pode ser desfeita. O aluno perderá acesso ao sistema e não aparecerá nas listagens ativas.</p>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="confirmDelete">
+                        <label class="form-check-label" for="confirmDelete">
+                            Confirmo que desejo desativar este aluno
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn" disabled>Confirmar Desativação</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center mt-5">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-6 text-md-start">
+                    <p class="mb-0 text-white">&copy; 2023 Sistema de Gestão Escolar. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+    <script src="js/detalhes-aluno.js"></script>
+</body>
+</html>
