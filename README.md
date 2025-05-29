@@ -137,6 +137,45 @@ Além da adaptação do layout, também foi analisado o comportamento das transi
 
 Com esses ajustes e validações, foi possível assegurar que o site não apenas mantivesse um design responsivo, mas também proporcionasse uma navegação intuitiva, fluida e visualmente agradável, alinhada às boas práticas de usabilidade em desenvolvimento web.
 
+---
+
+## 🚀 Como rodar o projeto
+
+### Pré-requisitos
+
+- ✅ Ter o **Git** instalado na sua máquina
+- ✅ Ter um navegador atualizado instalado (Chrome, Firefox, Edge, etc.)
+
+---
+
+### 📥 Clonar o repositório
+
+```bash
+git clone https://github.com/sistema-gestao-escolar/sistema-gestao-escolar.git
+```
+
+---
+
+### 📂 Acessar a pasta do projeto
+
+```bash
+cd SISTEMA-GESTAO-ESCOLAR
+```
+
+---
+
+### 🖥️ Rodar o projeto
+
+Basta abrir o arquivo `index.html` no navegador.
+
+✅ Abra o **index.html**:
+
+* Clique duas vezes no arquivo `index.html`
+* Ou arraste para o navegador
+* Ou use uma extensão como **Live Server** no VSCode para abrir no navegador (opcional).
+
+---
+
 ## 🧾 Considerações Finais e Possíveis Melhorias
 
 Apesar dos avanços obtidos com o desenvolvimento do sistema, ainda há oportunidades para otimizar a experiência do usuário por meio de melhorias específicas. Uma das principais recomendações é o aprimoramento da acessibilidade, visando garantir maior compatibilidade com tecnologias assistivas, como leitores de tela e navegação por teclado. Essa adaptação tornaria o site mais inclusivo, atendendo a usuários com diferentes necessidades.
