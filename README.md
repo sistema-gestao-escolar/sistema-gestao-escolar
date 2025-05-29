@@ -32,6 +32,9 @@ No desenvolvimento do site de cadastro de alunos, foram empregadas três tecnolo
 ### 🧱 HTML (Estrutura)
 O HTML foi utilizado para estruturar o conteúdo das páginas. Nele foi definido os elementos básicos da interface, como formulários de cadastro, tabelas de listagem de alunos e botões de navegação. A semântica HTML foi aplicada para garantir que o código fosse bem organizado e de fácil compreensão, tanto para os desenvolvedores quanto para futuras manutenções
 
+### 🔧 Bootstrap (Estilo e Componentes)
+O Bootstrap foi utilizado para estilizar a interface e proporcionar uma experiência de usuário moderna, responsiva e visualmente agradável. Foram aplicados seus componentes prontos, como botões, formulários e tabelas, para garantir consistência visual e economia de tempo no desenvolvimento. Além disso, o uso do sistema de grid do Bootstrap permitiu uma estrutura responsiva e bem organizada, adaptando o layout para diferentes tamanhos de tela, sem a necessidade de escrever CSS manualmente.
+
 ### 🎨 CSS (Estilização)
 O CSS foi empregado para estilizar o site, proporcionando um design agradável e harmonioso. Através do uso do framework Bootstrap, foi possível criar um layout responsivo que se adapta a diferentes tamanhos de tela, garantindo uma experiência de usuário consistente em dispositivos móveis e desktops. Além disso, a paleta de cores, fontes e espaçaamentos foram ajustados para tornar a interface visualmente atraente e intuitiva, trazendo acessibilidade aos usuários.
 
